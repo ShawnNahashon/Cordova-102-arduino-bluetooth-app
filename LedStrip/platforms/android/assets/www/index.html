@@ -1,0 +1,101 @@
+<!-- LedStrip bluetooth html code-->
+<!DOCTYPE html>
+<html>
+    <head>
+    	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, user-scalable=no
+		initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
+
+	<title>LED STRIP BLUETOOTH CONTROL</title>
+	<link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+	<style>
+		@import 'ui/css/evothings-app.css';
+	</style>
+
+	<script>
+	// Redirect console.log to Evothings Workbench.
+	if (window.hyper && window.hyper.log) { console.log = hyper.log }
+	window.onerror = function(msg, url, line)
+	{
+		console.log(msg + ": " + url + ":" + line);
+	};
+	</script>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name = "format-detection" content = "telephone=no"/>
+        <!--
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width;" />
+        -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+
+        <title>Light Control</title>
+        <script src="js/jquery-1.9.1.min.js"></script>
+        <script src="js/jquery.mobile-1.4.5.min.js"></script>
+
+    </head>
+    <body ontouchstart=""><!-- ontouchstart="" enables low-delay CSS transitions. -->
+
+	<header>
+		<button class="back" onclick="history.back()">
+			<img src="ui/images/arrow-left.svg" />
+		</button>
+
+		<img class="logotype" src="ui/images/chlorophysics2.jpg" alt= "CHLOROPHYSICS" />
+
+		<!--<button class="menu" onclick=""><img src="ui/images/menu.svg" /></button>-->
+	</header>
+
+
+  	<div data-role="main" class="ui-content">
+
+	<h1>Bluetooth LED Strip control</h1>
+	<div id="connectionScreen">
+            <ul id="deviceList" class="topcoat-list">
+            </ul>
+            <div style="margin: 10px">
+                <button class="topcoat-button" id="refreshButton">Refresh</button>
+            </div>
+        </div>
+
+        <div id="colorScreen">
+
+            <button class="red wide" onclick="app.BRed()">Brighten Red</button>
+            <button class="green wide" onclick="app.BGreen()">Brighten Green</button>
+            <button class="blue wide" onclick="app.BBlue()">Brighten Blue</button>
+            <button class="wave wide" onclick="app.DBlue()">Dim Blue</button>
+            <button class="fern wide" onclick="app.DGreen()">Dim Green</button>
+            <button class="salmon wide" onclick="app.DRed()">Dim Red</button>
+
+
+            <button class="yellow wide" id="disconnectButton" onclick="app.disconnect()">Disconnect</button>
+
+        </div>
+        <div id="messageDiv" style="font-size:75%"></div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/underscore-min.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+            app.BRed = function(){
+            	bluetoothSerial.write("1");
+            }
+            app.BGreen = function(){
+            	bluetoothSerial.write("2");
+            }
+            app.BBlue = function(){
+            	bluetoothSerial.write("3");
+            }
+            app.DBlue = function(){
+            	bluetoothSerial.write("4");
+            }
+            app.DGreen = function(){
+            	bluetoothSerial.write("5");
+            }
+            app.DRed = function(){
+            	bluetoothSerial.write("6");
+            }
+        </script>
+        </div>
+
+
+    </body>
+</html>
